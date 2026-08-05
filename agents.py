@@ -8,7 +8,7 @@ from data_loader import DataLoader
 load_dotenv()
 
 OPENROUTER_API_KEY = os.getenv("OPENROUTER_API_KEY")
-MODEL = "qwen/qwen3.5-9b" 
+MODEL = "qwen/qwen-2.5-7b-instruct"
 
 class BaseAgent:
     def __init__(self, name: str, system_prompt: str):

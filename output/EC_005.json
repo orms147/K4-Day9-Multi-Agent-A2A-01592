@@ -1,7 +1,7 @@
 {
   "case_id": "EC_005",
   "case_assessment": {
-    "primary_issue": "late_delivery_logistics",
+    "primary_issue": "late_delivery_seller",
     "secondary_issues": [
       "multi_item_order"
     ],
@@ -30,8 +30,8 @@
   },
   "product_context": {
     "product_ids": [
-      "c686d4fd1e845efd1b98db8220f0af3b",
-      "5b2b72f58d212a6e4733884ef0ece564"
+      "5b2b72f58d212a6e4733884ef0ece564",
+      "c686d4fd1e845efd1b98db8220f0af3b"
     ],
     "category_names": [
       "cama_mesa_banho"
@@ -73,14 +73,18 @@
   "root_cause_analysis": {
     "ranked_causes": [
       {
-        "cause_code": "CARRIER_DELIVERED_AFTER_ESTIMATE",
+        "cause_code": "SELLER_HANDOFF_AFTER_LIMIT",
         "rank": 1
       }
     ],
     "responsible_parties": [
       {
-        "party_type": "logistics_provider",
-        "party_id": null
+        "party_type": "seller",
+        "party_id": "dc4a0fc896dc34b0d5bfec8438291c80"
+      },
+      {
+        "party_type": "seller",
+        "party_id": "8160255418d5aaa7dbdc9f4c64ebda44"
       }
     ]
   },
@@ -89,9 +93,9 @@
     "item:3a20bcc250e5404ca717dfa90e8a9c05:1",
     "item:3a20bcc250e5404ca717dfa90e8a9c05:2",
     "payment:3a20bcc250e5404ca717dfa90e8a9c05:1",
-    "seller:8160255418d5aaa7dbdc9f4c64ebda44",
     "seller:dc4a0fc896dc34b0d5bfec8438291c80",
-    "policy:CARRIER_DELIVERED_AFTER_ESTIMATE"
+    "seller:8160255418d5aaa7dbdc9f4c64ebda44",
+    "policy:SELLER_HANDOFF_AFTER_LIMIT"
   ],
   "financial_resolution": {
     "currency": "BRL",

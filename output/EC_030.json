@@ -1,10 +1,8 @@
 {
   "case_id": "EC_030",
   "case_assessment": {
-    "primary_issue": "unsupported_late_claim",
-    "secondary_issues": [
-      "multi_item_order"
-    ],
+    "primary_issue": "canceled_order_paid",
+    "secondary_issues": [],
     "case_status": "no_action",
     "confidence": 0.95
   },
@@ -65,25 +63,29 @@
   "root_cause_analysis": {
     "ranked_causes": [
       {
-        "cause_code": "DELIVERY_WITHIN_ESTIMATE",
+        "cause_code": "ORDER_CANCELED_AFTER_PAYMENT",
         "rank": 1
       }
     ],
-    "responsible_parties": []
+    "responsible_parties": [
+      {
+        "party_type": "platform",
+        "party_id": null
+      }
+    ]
   },
   "evidence_ids": [
     "order:676e40056867189a1b3599f3e646f421",
     "item:676e40056867189a1b3599f3e646f421:1",
     "item:676e40056867189a1b3599f3e646f421:2",
     "payment:676e40056867189a1b3599f3e646f421:1",
-    "seller:38e679b9e0064cd94c6f035707344dae",
-    "policy:DELIVERY_WITHIN_ESTIMATE"
+    "policy:ORDER_CANCELED_AFTER_PAYMENT"
   ],
   "financial_resolution": {
     "currency": "BRL",
     "recommended_refund_brl": 0.0
   },
   "resolution_actions": [
-    "reject_late_refund"
+    "issue_full_refund"
   ]
 }

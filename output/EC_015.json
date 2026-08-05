@@ -4,11 +4,10 @@
     "primary_issue": "unsupported_late_claim",
     "secondary_issues": [
       "multi_item_order",
-      "multi_seller_order",
-      "split_payment"
+      "multi_seller_order"
     ],
     "case_status": "no_action",
-    "confidence": 0.95
+    "confidence": 1.0
   },
   "affected_entities": {
     "order_ids": [
@@ -19,8 +18,8 @@
       "ccec592b58e122dc2bfc2305152d9603:2"
     ],
     "seller_ids": [
-      "8a432f4e5b471f8da497d7dc517666e2",
-      "845e8036c3f7bf62099352f5ed910240"
+      "845e8036c3f7bf62099352f5ed910240",
+      "8a432f4e5b471f8da497d7dc517666e2"
     ],
     "payment_ids": [
       "ccec592b58e122dc2bfc2305152d9603:1",
@@ -35,8 +34,8 @@
   },
   "product_context": {
     "product_ids": [
-      "9c6d5d4aaea6884ee19112567691a1da",
-      "11a10f5773a7da9fb352dfe9e119803b"
+      "11a10f5773a7da9fb352dfe9e119803b",
+      "9c6d5d4aaea6884ee19112567691a1da"
     ],
     "category_names": [
       "cama_mesa_banho"
@@ -72,8 +71,8 @@
     "difference_brl": 0.0,
     "reconciled": true,
     "payment_types": [
-      "voucher",
-      "credit_card"
+      "credit_card",
+      "voucher"
     ]
   },
   "root_cause_analysis": {
@@ -87,14 +86,7 @@
   },
   "evidence_ids": [
     "order:ccec592b58e122dc2bfc2305152d9603",
-    "item:ccec592b58e122dc2bfc2305152d9603:1",
-    "item:ccec592b58e122dc2bfc2305152d9603:2",
     "payment:ccec592b58e122dc2bfc2305152d9603:1",
-    "payment:ccec592b58e122dc2bfc2305152d9603:4",
-    "payment:ccec592b58e122dc2bfc2305152d9603:3",
-    "payment:ccec592b58e122dc2bfc2305152d9603:2",
-    "seller:8a432f4e5b471f8da497d7dc517666e2",
-    "seller:845e8036c3f7bf62099352f5ed910240",
     "policy:DELIVERY_WITHIN_ESTIMATE"
   ],
   "financial_resolution": {

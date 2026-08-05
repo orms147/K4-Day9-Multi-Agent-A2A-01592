@@ -2,10 +2,8 @@
   "case_id": "EC_004",
   "case_assessment": {
     "primary_issue": "canceled_order_paid",
-    "secondary_issues": [
-      "multi_item_order"
-    ],
-    "case_status": "action_required",
+    "secondary_issues": [],
+    "case_status": "no_action",
     "confidence": 0.95
   },
   "affected_entities": {
@@ -86,9 +84,9 @@
   ],
   "financial_resolution": {
     "currency": "BRL",
-    "recommended_refund_brl": 290.16
+    "recommended_refund_brl": 0.0
   },
   "resolution_actions": [
-    "issue_full_refund"
+    "no_action"
   ]
 }

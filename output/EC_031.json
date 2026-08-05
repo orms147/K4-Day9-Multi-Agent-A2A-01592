@@ -1,10 +1,8 @@
 {
   "case_id": "EC_031",
   "case_assessment": {
-    "primary_issue": "unsupported_late_claim",
-    "secondary_issues": [
-      "repeat_customer"
-    ],
+    "primary_issue": "unavailable_order_paid",
+    "secondary_issues": [],
     "case_status": "no_action",
     "confidence": 0.95
   },
@@ -31,21 +29,26 @@
   "root_cause_analysis": {
     "ranked_causes": [
       {
-        "cause_code": "DELIVERY_WITHIN_ESTIMATE",
+        "cause_code": "ORDER_UNAVAILABLE_AFTER_PAYMENT",
         "rank": 1
       }
     ],
-    "responsible_parties": []
+    "responsible_parties": [
+      {
+        "party_type": "platform",
+        "party_id": null
+      }
+    ]
   },
   "evidence_ids": [
     "order:72fa449394ed9dc9093819f93ca563af",
-    "policy:DELIVERY_WITHIN_ESTIMATE"
+    "policy:ORDER_UNAVAILABLE_AFTER_PAYMENT"
   ],
   "financial_resolution": {
     "currency": "BRL",
-    "recommended_refund_brl": 0.0
+    "recommended_refund_brl": 0
   },
   "resolution_actions": [
-    "reject_late_refund"
+    "no_action"
   ]
 }

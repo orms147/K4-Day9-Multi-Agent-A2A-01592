@@ -1,13 +1,11 @@
 {
   "case_id": "EC_022",
   "case_assessment": {
-    "primary_issue": "unsupported_late_claim",
+    "primary_issue": "late_delivery_seller",
     "secondary_issues": [
-      "multi_item_order",
-      "split_payment",
-      "repeat_customer"
+      "multi_item_order"
     ],
-    "case_status": "no_action",
+    "case_status": "action_required",
     "confidence": 0.95
   },
   "affected_entities": {
@@ -73,11 +71,16 @@
   "root_cause_analysis": {
     "ranked_causes": [
       {
-        "cause_code": "DELIVERY_WITHIN_ESTIMATE",
+        "cause_code": "SELLER_HANDOFF_AFTER_LIMIT",
         "rank": 1
       }
     ],
-    "responsible_parties": []
+    "responsible_parties": [
+      {
+        "party_type": "seller",
+        "party_id": "751bdc4d83a466c7206cd42e8f426b03"
+      }
+    ]
   },
   "evidence_ids": [
     "order:ca0400dec2c292340c373e63b1c2c597",
@@ -88,13 +91,13 @@
     "payment:ca0400dec2c292340c373e63b1c2c597:1",
     "payment:ca0400dec2c292340c373e63b1c2c597:2",
     "seller:751bdc4d83a466c7206cd42e8f426b03",
-    "policy:DELIVERY_WITHIN_ESTIMATE"
+    "policy:SELLER_HANDOFF_AFTER_LIMIT"
   ],
   "financial_resolution": {
     "currency": "BRL",
-    "recommended_refund_brl": 0.0
+    "recommended_refund_brl": 77.72
   },
   "resolution_actions": [
-    "reject_late_refund"
+    "refund_freight"
   ]
 }
