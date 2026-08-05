@@ -1,10 +1,10 @@
 {
   "case_id": "EC_008",
   "case_assessment": {
-    "primary_issue": "valid_split_payment",
+    "primary_issue": "",
     "secondary_issues": [],
-    "case_status": "resolved",
-    "confidence": 100
+    "case_status": "no_action",
+    "confidence": 0.95
   },
   "affected_entities": {
     "order_ids": [
@@ -29,8 +29,8 @@
   },
   "product_context": {
     "product_ids": [
-      "c1c1d3afbe6a5ab7a534f7ea20e09b8e",
-      "6ab41d7f15e7af9d6c7cd912055acc1a"
+      "6ab41d7f15e7af9d6c7cd912055acc1a",
+      "c1c1d3afbe6a5ab7a534f7ea20e09b8e"
     ],
     "category_names": [
       "esporte_lazer"
@@ -70,14 +70,8 @@
       "voucher"
     ]
   },
-  "root_cause_analysis": "The order was split into multiple payments, which is a valid payment method according to the policy.",
-  "evidence_ids": {
-    "order": "23c312ca9f0242a48a95e5643bee2645",
-    "item": "23c312ca9f0242a48a95e5643bee2645:1,23c312ca9f0242a48a95e5643bee2645:2",
-    "payment": "23c312ca9f0242a48a95e5643bee2645:1,23c312ca9f0242a48a95e5643bee2645:2",
-    "seller": "6b3bd31ad8fcda4b2635ec9f3ff2ecdf,c32fc744b9160ac853450488e3cfea93",
-    "policy": "EC_POLICY_V2:valid_split_payment"
-  },
-  "financial_resolution": "No financial resolution needed as the payment was reconciled correctly.",
+  "root_cause_analysis": {},
+  "evidence_ids": [],
+  "financial_resolution": {},
   "resolution_actions": []
 }

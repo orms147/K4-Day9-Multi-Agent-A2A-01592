@@ -1,12 +1,10 @@
 {
   "case_id": "EC_009",
   "case_assessment": {
-    "primary_issue": "canceled_order_paid",
-    "secondary_issues": [
-      "unavailable_order_paid"
-    ],
-    "case_status": "resolved",
-    "confidence": 95
+    "primary_issue": "",
+    "secondary_issues": [],
+    "case_status": "no_action",
+    "confidence": 0.95
   },
   "affected_entities": {
     "order_ids": [
@@ -65,23 +63,8 @@
       "credit_card"
     ]
   },
-  "root_cause_analysis": "The order was canceled but payment was made, which is against policy. Additionally, the order was paid for but the items were not available.",
-  "evidence_ids": {
-    "order": "6683aa4f73f7869ec65ebeeef53f700b",
-    "item": "6683aa4f73f7869ec65ebeeef53f700b:1,6683aa4f73f7869ec65ebeeef53f700b:2,6683aa4f73f7869ec65ebeeef53f700b:3,6683aa4f73f7869ec65ebeeef53f700b:4,6683aa4f73f7869ec65ebeeef53f700b:5",
-    "payment": "6683aa4f73f7869ec65ebeeef53f700b:1",
-    "seller": "4e8dacf3d38f281ae26c3e0321d92d88",
-    "policy": "canceled_order_paid, unavailable_order_paid"
-  },
-  "financial_resolution": {
-    "refund_amount": 144.3,
-    "refund_currency": "BRL"
-  },
-  "resolution_actions": [
-    {
-      "action": "refund",
-      "amount": 144.3,
-      "currency": "BRL"
-    }
-  ]
+  "root_cause_analysis": {},
+  "evidence_ids": [],
+  "financial_resolution": {},
+  "resolution_actions": []
 }

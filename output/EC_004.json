@@ -3,10 +3,10 @@
   "case_assessment": {
     "primary_issue": "canceled_order_paid",
     "secondary_issues": [
-      "unavailable_order_paid"
+      "multi_item_order"
     ],
-    "case_status": "resolved",
-    "confidence": 95
+    "case_status": "action_required",
+    "confidence": 0.95
   },
   "affected_entities": {
     "order_ids": [
@@ -62,27 +62,33 @@
       "credit_card"
     ]
   },
-  "root_cause_analysis": "The order was canceled but payment was made, which is against policy. Additionally, the order items are unavailable as the order was canceled.",
-  "evidence_ids": {
-    "order": "order:5d9c5817e278892b7498d90bfa28ade8",
-    "item": "item:5d9c5817e278892b7498d90bfa28ade8:1, item:5d9c5817e278892b7498d90bfa28ade8:2",
-    "payment": "payment:5d9c5817e278892b7498d90bfa28ade8:1",
-    "seller": "seller:340636a908b13bbe0f4fb63fbe1d0c03",
-    "policy": "policy:EC_POLICY_V2"
+  "root_cause_analysis": {
+    "ranked_causes": [
+      {
+        "cause_code": "ORDER_CANCELED_AFTER_PAYMENT",
+        "rank": 1
+      }
+    ],
+    "responsible_parties": [
+      {
+        "party_type": "platform",
+        "party_id": null
+      }
+    ]
   },
+  "evidence_ids": [
+    "order:5d9c5817e278892b7498d90bfa28ade8",
+    "item:5d9c5817e278892b7498d90bfa28ade8:1",
+    "item:5d9c5817e278892b7498d90bfa28ade8:2",
+    "payment:5d9c5817e278892b7498d90bfa28ade8:1",
+    "seller:340636a908b13bbe0f4fb63fbe1d0c03",
+    "policy:ORDER_CANCELED_AFTER_PAYMENT"
+  ],
   "financial_resolution": {
-    "refund_amount": 290.16,
-    "refund_currency": "BRL"
+    "currency": "BRL",
+    "recommended_refund_brl": 290.16
   },
   "resolution_actions": [
-    {
-      "action": "refund_customer",
-      "amount": 290.16,
-      "currency": "BRL"
-    },
-    {
-      "action": "notify_seller",
-      "message": "The order was canceled and payment was made, which is against policy. Please review the order and ensure it meets the payment terms."
-    }
+    "issue_full_refund"
   ]
 }

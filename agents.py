@@ -8,8 +8,7 @@ from data_loader import DataLoader
 load_dotenv()
 
 OPENROUTER_API_KEY = os.getenv("OPENROUTER_API_KEY")
-# Sử dụng Qwen 2.5 7B (dưới 10B) qua OpenRouter 
-MODEL = "qwen/qwen-2.5-7b-instruct" 
+MODEL = "qwen/qwen3.5-9b" 
 
 class BaseAgent:
     def __init__(self, name: str, system_prompt: str):
@@ -29,8 +28,7 @@ class BaseAgent:
                     {"role": "system", "content": self.system_prompt},
                     {"role": "user", "content": user_prompt}
                 ],
-                temperature=0.1,
-                response_format={"type": "json_object"} if "JSON" in self.system_prompt else None
+                temperature=0.1
             )
             return response.choices[0].message.content.strip()
         except Exception as e:
@@ -201,45 +199,69 @@ class PolicyAgent(BaseAgent):
     def __init__(self):
         super().__init__(
             "PolicyAgent",
-            """You are the Policy Agent. Evaluate EC_POLICY_V2 rules strictly based on the provided facts.
-Output ONLY a valid JSON object describing:
-- primary_issue
-- secondary_issues (ordered correctly)
-- case_status
-- confidence
-- root_cause_analysis
-- evidence_ids
-- financial_resolution
-- resolution_actions
-Use the exact schema requested."""
+            """You are the Policy Agent. Your job is to evaluate EC_POLICY_V2 strict rules based on factual JSON.
+You MUST output ONLY a valid JSON object matching the exact schema provided.
+Do NOT output anything else. No markdown formatting, just JSON.
+
+SCHEMA REQUIREMENTS & EXAMPLES:
+{
+  "case_assessment": {
+    "primary_issue": "late_delivery_seller",
+    "secondary_issues": ["multi_item_order"],
+    "case_status": "action_required",
+    "confidence": 0.95
+  },
+  "root_cause_analysis": {
+    "ranked_causes": [
+      { "cause_code": "SELLER_HANDOFF_AFTER_LIMIT", "rank": 1 }
+    ],
+    "responsible_parties": [
+      { "party_type": "seller", "party_id": "c70c1b0d8ca86052f45a432a38b73958" }
+    ]
+  },
+  "evidence_ids": [
+    "order:9b75cdaf2d85857ef023980e15d01546",
+    "item:9b75cdaf2d85857ef023980e15d01546:1",
+    "payment:9b75cdaf2d85857ef023980e15d01546:1",
+    "seller:c70c1b0d8ca86052f45a432a38b73958",
+    "policy:SELLER_HANDOFF_AFTER_LIMIT"
+  ],
+  "financial_resolution": {
+    "currency": "BRL",
+    "recommended_refund_brl": 16.7
+  },
+  "resolution_actions": [
+    "refund_freight"
+  ]
+}
+
+RULES for primary_issue & cause_code & party_type:
+1. canceled_order_paid: order_status = canceled AND payment_total > 0 -> refund total payment. Actions: issue_full_refund. Cause: ORDER_CANCELED_AFTER_PAYMENT. Party: platform.
+2. unavailable_order_paid: order_status = unavailable AND payment > 0 -> refund total. Actions: issue_full_refund. Cause: ORDER_UNAVAILABLE_AFTER_PAYMENT. Party: platform.
+3. late_delivery_seller: delivered_at > estimated AND carrier_handoff > ANY shipping_limit -> refund freight. Actions: refund_freight. Cause: SELLER_HANDOFF_AFTER_LIMIT. Party: seller.
+4. late_delivery_logistics: delivered_at > estimated AND NO seller handed off late -> refund freight. Actions: refund_freight. Cause: CARRIER_DELIVERED_AFTER_ESTIMATE. Party: logistics_provider.
+5. valid_split_payment: >1 payments AND diff <= 0.10 -> 0 refund. Actions: explain_valid_split_payment. Cause: MULTIPLE_PAYMENTS_RECONCILED. Party: null.
+6. unsupported_late_claim: delivered <= estimated AND reconciled -> 0 refund. Actions: reject_late_refund. Cause: DELIVERY_WITHIN_ESTIMATE. Party: null.
+
+CRITICAL INSTRUCTIONS:
+- `confidence` must be a FLOAT like 0.95, NOT 95 or 100.
+- `case_status` must be exactly "action_required" (if refund > 0) or "no_action".
+- `evidence_ids` must be a FLAT ARRAY OF STRINGS, NOT AN OBJECT. Generate these dynamically from the facts.
+- `recommended_refund_brl` must be a FLOAT.
+"""
         )
         
     def process(self, facts: dict):
-        prompt = f"""
-Facts about the order:
-{json.dumps(facts, indent=2)}
-
-Apply EC_POLICY_V2 strictly:
-Primary issue priority:
-1. canceled_order_paid
-2. unavailable_order_paid
-3. late_delivery_seller
-4. late_delivery_logistics
-5. valid_split_payment
-6. unsupported_late_claim
-
-Output JSON must follow the schema and rules. Ensure you include evidence_ids format: order:<id>, item:<id>, payment:<id>, seller:<id>, policy:<root_cause_code>.
-"""
+        prompt = f"Facts about the order:\n{json.dumps(facts, indent=2)}\n\nOutput ONLY valid JSON following the schema."
         response = self.invoke(prompt)
         try:
-            # Strip markdown code blocks if any
             if response.startswith("```json"):
                 response = response[7:-3]
             elif response.startswith("```"):
                 response = response[3:-3]
             return json.loads(response)
-        except json.JSONDecodeError:
-            print("Failed to decode PolicyAgent JSON output.")
+        except Exception as e:
+            print(f"Failed to decode PolicyAgent JSON output. Error: {e}")
             return {}
 
 class CoordinatorAgent:
@@ -255,7 +277,6 @@ class CoordinatorAgent:
         order_id = case_json['customer_request']['claimed_order_id']
         case_id = case_json['case_id']
         
-        # Gather facts via Domain Agents (Hybrid Python execution)
         customer_ctx = self.customer_agent.process(order_id)
         op_ctx = self.order_product_agent.process(order_id)
         payment_ctx = self.payment_agent.process(order_id)
@@ -273,10 +294,8 @@ class CoordinatorAgent:
             "delivery": delivery_ctx
         }
         
-        # Policy Agent evaluates rules
         policy_decision = self.policy_agent.process(facts)
         
-        # Assemble Final JSON
         affected_entities = {
             "order_ids": [order_id],
             "item_ids": op_ctx.get('item_ids', []),
@@ -286,12 +305,7 @@ class CoordinatorAgent:
         
         final_output = {
             "case_id": case_id,
-            "case_assessment": {
-                "primary_issue": policy_decision.get("primary_issue", ""),
-                "secondary_issues": policy_decision.get("secondary_issues", []),
-                "case_status": policy_decision.get("case_status", "no_action"),
-                "confidence": policy_decision.get("confidence", 0.95)
-            },
+            "case_assessment": policy_decision.get("case_assessment", {}),
             "affected_entities": affected_entities,
             "customer_context": {
                 "customer_unique_id": customer_ctx.get("customer_unique_id"),
@@ -308,5 +322,4 @@ class CoordinatorAgent:
             "financial_resolution": policy_decision.get("financial_resolution", {}),
             "resolution_actions": policy_decision.get("resolution_actions", [])
         }
-        
         return final_output

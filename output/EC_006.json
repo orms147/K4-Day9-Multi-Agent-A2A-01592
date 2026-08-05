@@ -3,14 +3,10 @@
   "case_assessment": {
     "primary_issue": "late_delivery_seller",
     "secondary_issues": [
-      "canceled_order_paid",
-      "unavailable_order_paid",
-      "late_delivery_logistics",
-      "valid_split_payment",
-      "unsupported_late_claim"
+      "multi_item_order"
     ],
-    "case_status": "resolved",
-    "confidence": 95
+    "case_status": "action_required",
+    "confidence": 0.95
   },
   "affected_entities": {
     "order_ids": [
@@ -72,17 +68,35 @@
       "credit_card"
     ]
   },
-  "root_cause_analysis": "The seller failed to hand off the order within the shipping limit, causing a late delivery. This is evident from the 'late_handoff' flag in the seller_handoff_analysis.",
-  "evidence_ids": {
-    "order": "0e4a4de1d15b6df8d4335fb2db61667a",
-    "item": "0e4a4de1d15b6df8d4335fb2db61667a:1",
-    "payment": "0e4a4de1d15b6df8d4335fb2db61667a:1",
-    "seller": "897060da8b9a21f655304d50fd935913",
-    "policy": "LATE_DELIVERY_SELLER"
+  "root_cause_analysis": {
+    "ranked_causes": [
+      {
+        "cause_code": "SELLER_HANDOFF_AFTER_LIMIT",
+        "rank": 1
+      }
+    ],
+    "responsible_parties": [
+      {
+        "party_type": "seller",
+        "party_id": "897060da8b9a21f655304d50fd935913"
+      }
+    ]
   },
-  "financial_resolution": "No financial resolution needed as the order was delivered and the payment was reconciled correctly.",
+  "evidence_ids": [
+    "order:0e4a4de1d15b6df8d4335fb2db61667a",
+    "item:0e4a4de1d15b6df8d4335fb2db61667a:1",
+    "item:0e4a4de1d15b6df8d4335fb2db61667a:2",
+    "item:0e4a4de1d15b6df8d4335fb2db61667a:3",
+    "item:0e4a4de1d15b6df8d4335fb2db61667a:4",
+    "payment:0e4a4de1d15b6df8d4335fb2db61667a:1",
+    "seller:897060da8b9a21f655304d50fd935913",
+    "policy:SELLER_HANDOFF_AFTER_LIMIT"
+  ],
+  "financial_resolution": {
+    "currency": "BRL",
+    "recommended_refund_brl": 60.4
+  },
   "resolution_actions": [
-    "Notify the seller about the late handoff and the need to adhere to the shipping limit.",
-    "Monitor the seller's performance to prevent future late deliveries."
+    "refund_freight"
   ]
 }

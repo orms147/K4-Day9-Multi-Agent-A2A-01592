@@ -1,10 +1,10 @@
 {
   "case_id": "EC_012",
   "case_assessment": {
-    "primary_issue": "unavailable_order_paid",
+    "primary_issue": "unavailable_order",
     "secondary_issues": [],
-    "case_status": "open",
-    "confidence": 100
+    "case_status": "no_action",
+    "confidence": 0.95
   },
   "affected_entities": {
     "order_ids": [
@@ -26,14 +26,21 @@
   },
   "delivery_analysis": null,
   "payment_reconciliation": null,
-  "root_cause_analysis": "The order is marked as unavailable, but there is no payment information provided, which suggests that the payment status might be incorrectly recorded or the order was paid for despite being unavailable.",
-  "evidence_ids": {
-    "order": "order:73628c6d02ed8f6134d9752cd7b83c2a",
-    "payment": "payment:<id>"
+  "root_cause_analysis": {
+    "ranked_causes": [
+      {
+        "cause_code": "ORDER_UNAVAILABLE_NO_PAYMENT",
+        "rank": 1
+      }
+    ],
+    "responsible_parties": []
   },
-  "financial_resolution": "Refund the customer for the amount paid for the unavailable order.",
-  "resolution_actions": [
-    "Initiate a refund process for the customer.",
-    "Update the order status to reflect the correct payment and availability status."
-  ]
+  "evidence_ids": [
+    "order:73628c6d02ed8f6134d9752cd7b83c2a"
+  ],
+  "financial_resolution": {
+    "currency": "BRL",
+    "recommended_refund_brl": 0.0
+  },
+  "resolution_actions": []
 }

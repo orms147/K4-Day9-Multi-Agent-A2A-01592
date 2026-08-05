@@ -1,10 +1,10 @@
 {
   "case_id": "EC_010",
   "case_assessment": {
-    "primary_issue": "valid_split_payment",
+    "primary_issue": "",
     "secondary_issues": [],
-    "case_status": "resolved",
-    "confidence": 100
+    "case_status": "no_action",
+    "confidence": 0.95
   },
   "affected_entities": {
     "order_ids": [
@@ -69,14 +69,8 @@
       "credit_card"
     ]
   },
-  "root_cause_analysis": "The order was split into two payments, and both payments were reconciled correctly.",
-  "evidence_ids": {
-    "order": "919baca007d9525b6668c18f79a33197",
-    "item": "919baca007d9525b6668c18f79a33197:1,919baca007d9525b6668c18f79a33197:2",
-    "payment": "919baca007d9525b6668c18f79a33197:1,919baca007d9525b6668c18f79a33197:2",
-    "seller": "c60b801f2d52c7f7f91de00870882a75,7d13fca15225358621be4086e1eb0964",
-    "policy": "EC_POLICY_V2_VALID_SPLIT_PAYMENT"
-  },
-  "financial_resolution": "No financial resolution needed as the payment was reconciled correctly.",
+  "root_cause_analysis": {},
+  "evidence_ids": [],
+  "financial_resolution": {},
   "resolution_actions": []
 }
