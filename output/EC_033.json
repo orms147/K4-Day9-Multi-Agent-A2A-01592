@@ -1,0 +1,38 @@
+{
+  "case_id": "EC_033",
+  "case_assessment": {
+    "primary_issue": "unavailable_order_paid",
+    "secondary_issues": [],
+    "case_status": "open",
+    "confidence": 100
+  },
+  "affected_entities": {
+    "order_ids": [
+      "edefc0fa09c98cc491e9d2cf95ee4a5f"
+    ],
+    "item_ids": [],
+    "seller_ids": [],
+    "payment_ids": []
+  },
+  "customer_context": {
+    "customer_unique_id": "f019bdb8008924769fe88319cddedda9",
+    "related_order_ids": [
+      "b345a3528956237e1d8907b94d5e5829"
+    ]
+  },
+  "product_context": {
+    "product_ids": [],
+    "category_names": []
+  },
+  "delivery_analysis": null,
+  "payment_reconciliation": null,
+  "root_cause_analysis": "The order is marked as unavailable, but there is no evidence of payment or delivery issues that would suggest a different root cause.",
+  "evidence_ids": {
+    "order": "edefc0fa09c98cc491e9d2cf95ee4a5f"
+  },
+  "financial_resolution": null,
+  "resolution_actions": [
+    "Contact the customer to confirm the status of the order and the reason for it being marked as unavailable.",
+    "Review the payment details to ensure the payment was processed correctly."
+  ]
+}

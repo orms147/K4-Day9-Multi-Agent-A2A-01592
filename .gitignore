@@ -1,0 +1,23 @@
+# Environment variables
+.env
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# IDE
+.vscode/
+.idea/
+
+# Virtual Environment
+venv/
+env/
+.venv/
+
+# output zip
+output.zip
+
+# input json
+input

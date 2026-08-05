@@ -1,0 +1,82 @@
+{
+  "case_id": "EC_032",
+  "case_assessment": {
+    "primary_issue": "late_delivery_seller",
+    "secondary_issues": [
+      "late_delivery_logistics"
+    ],
+    "case_status": "resolved",
+    "confidence": 95
+  },
+  "affected_entities": {
+    "order_ids": [
+      "d3782eb2976abf986175941c51364aab"
+    ],
+    "item_ids": [
+      "d3782eb2976abf986175941c51364aab:1",
+      "d3782eb2976abf986175941c51364aab:2"
+    ],
+    "seller_ids": [
+      "76d5af76d0271110f9af36c92573f765"
+    ],
+    "payment_ids": [
+      "d3782eb2976abf986175941c51364aab:1"
+    ]
+  },
+  "customer_context": {
+    "customer_unique_id": "94431ab24129f0060b53a89cfd62462f",
+    "related_order_ids": []
+  },
+  "product_context": {
+    "product_ids": [
+      "a7906a8a69acf5b0cb256882e741896a",
+      "197f7d1d3a8b0bf0c8f0394ff71b574b"
+    ],
+    "category_names": [
+      "esporte_lazer",
+      "construcao_ferramentas_iluminacao"
+    ]
+  },
+  "delivery_analysis": {
+    "delivered_at": "2018-01-02 12:18:43",
+    "estimated_delivery_at": "2017-12-29 00:00:00",
+    "carrier_handoff_at": "2017-12-20 21:13:05",
+    "delivery_variance_hours": 108.31,
+    "seller_handoff_analysis": [
+      {
+        "seller_id": "76d5af76d0271110f9af36c92573f765",
+        "shipping_limit_at": "2017-12-12 21:52:51",
+        "handoff_variance_hours": 191.34,
+        "late_handoff": true
+      }
+    ],
+    "late_handoff_seller_ids": [
+      "76d5af76d0271110f9af36c92573f765"
+    ]
+  },
+  "payment_reconciliation": {
+    "currency": "BRL",
+    "item_total_brl": 1017.0,
+    "freight_total_brl": 31.64,
+    "expected_total_brl": 1048.64,
+    "payment_total_brl": 1048.64,
+    "difference_brl": 0.0,
+    "reconciled": true,
+    "payment_types": [
+      "credit_card"
+    ]
+  },
+  "root_cause_analysis": "The order was delivered late, with the seller handing off the items late. The delivery variance was 108.31 hours, and the seller's handoff variance was 191.34 hours, indicating a late handoff by the seller.",
+  "evidence_ids": {
+    "order": "d3782eb2976abf986175941c51364aab",
+    "item": "d3782eb2976abf986175941c51364aab:1,d3782eb2976abf986175941c51364aab:2",
+    "payment": "d3782eb2976abf986175941c51364aab:1",
+    "seller": "76d5af76d0271110f9af36c92573f765",
+    "policy": "EC_POLICY_V2:late_delivery_seller"
+  },
+  "financial_resolution": "No financial resolution needed as the order was delivered.",
+  "resolution_actions": [
+    "Notify the seller about the late handoff and request timely delivery in the future.",
+    "Monitor the seller's performance and ensure compliance with delivery timelines."
+  ]
+}

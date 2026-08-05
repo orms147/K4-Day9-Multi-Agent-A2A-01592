@@ -1,0 +1,6 @@
+{
+  "model": "qwen/qwen-2.5-7b-instruct",
+  "parameter_size": "7B",
+  "framework": "Custom Python Multi-Agent Architecture",
+  "runtime": "Python 3.10+, OpenAI SDK, OpenRouter"
+}
