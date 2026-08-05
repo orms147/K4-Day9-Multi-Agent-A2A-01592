@@ -17,8 +17,8 @@
       "cc8778d76e567b45082b7f52bce23095:2"
     ],
     "seller_ids": [
-      "1c68394e931a64f90ea236c5ea590300",
-      "de722cd6dad950a92b7d4f82673f8833"
+      "de722cd6dad950a92b7d4f82673f8833",
+      "1c68394e931a64f90ea236c5ea590300"
     ],
     "payment_ids": [
       "cc8778d76e567b45082b7f52bce23095:1"
@@ -30,8 +30,8 @@
   },
   "product_context": {
     "product_ids": [
-      "909b87db6cb3a7ab26bd03cc59860136",
-      "a1a97164f38cfb98511eb68e6b40ad94"
+      "a1a97164f38cfb98511eb68e6b40ad94",
+      "909b87db6cb3a7ab26bd03cc59860136"
     ],
     "category_names": [
       "informatica_acessorios"
@@ -80,6 +80,10 @@
     "responsible_parties": [
       {
         "party_type": "seller",
+        "party_id": "de722cd6dad950a92b7d4f82673f8833"
+      },
+      {
+        "party_type": "seller",
         "party_id": "1c68394e931a64f90ea236c5ea590300"
       }
     ]
@@ -89,6 +93,7 @@
     "item:cc8778d76e567b45082b7f52bce23095:1",
     "item:cc8778d76e567b45082b7f52bce23095:2",
     "payment:cc8778d76e567b45082b7f52bce23095:1",
+    "seller:de722cd6dad950a92b7d4f82673f8833",
     "seller:1c68394e931a64f90ea236c5ea590300",
     "policy:SELLER_HANDOFF_AFTER_LIMIT"
   ],

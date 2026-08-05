@@ -79,7 +79,6 @@
     "item:9b4fc5c379134e1329bd48641ba285e3:1",
     "item:9b4fc5c379134e1329bd48641ba285e3:2",
     "payment:9b4fc5c379134e1329bd48641ba285e3:1",
-    "seller:8132b9bd16876e1b0f8808d43825dd48",
     "policy:ORDER_CANCELED_AFTER_PAYMENT"
   ],
   "financial_resolution": {
@@ -87,6 +86,6 @@
     "recommended_refund_brl": 0.0
   },
   "resolution_actions": [
-    "no_action"
+    "explain_valid_split_payment"
   ]
 }

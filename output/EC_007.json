@@ -17,8 +17,8 @@
       "cf788ee4258fde5130bb5651bda63918:2"
     ],
     "seller_ids": [
-      "95f83f51203c626648c875dd41874c7f",
-      "da8622b14eb17ae2831f4ac5b9dab84a"
+      "da8622b14eb17ae2831f4ac5b9dab84a",
+      "95f83f51203c626648c875dd41874c7f"
     ],
     "payment_ids": [
       "cf788ee4258fde5130bb5651bda63918:1"
@@ -94,8 +94,8 @@
     "item:cf788ee4258fde5130bb5651bda63918:1",
     "item:cf788ee4258fde5130bb5651bda63918:2",
     "payment:cf788ee4258fde5130bb5651bda63918:1",
-    "seller:95f83f51203c626648c875dd41874c7f",
     "seller:da8622b14eb17ae2831f4ac5b9dab84a",
+    "seller:95f83f51203c626648c875dd41874c7f",
     "policy:SELLER_HANDOFF_AFTER_LIMIT"
   ],
   "financial_resolution": {

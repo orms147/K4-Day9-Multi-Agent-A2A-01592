@@ -1,12 +1,12 @@
 {
   "case_id": "EC_014",
   "case_assessment": {
-    "primary_issue": "late_delivery_logistics",
+    "primary_issue": "late_delivery_seller",
     "secondary_issues": [
       "multi_item_order"
     ],
     "case_status": "action_required",
-    "confidence": 1.0
+    "confidence": 0.95
   },
   "affected_entities": {
     "order_ids": [
@@ -68,14 +68,14 @@
   "root_cause_analysis": {
     "ranked_causes": [
       {
-        "cause_code": "CARRIER_DELIVERED_AFTER_ESTIMATE",
+        "cause_code": "SELLER_HANDOFF_AFTER_LIMIT",
         "rank": 1
       }
     ],
     "responsible_parties": [
       {
-        "party_type": "logistics_provider",
-        "party_id": "unknown"
+        "party_type": "seller",
+        "party_id": "e9779976487b77c6d4ac45f75ec7afe9"
       }
     ]
   },
@@ -85,7 +85,8 @@
     "item:f938fa004452c776198a593e5fb9056d:2",
     "item:f938fa004452c776198a593e5fb9056d:3",
     "payment:f938fa004452c776198a593e5fb9056d:1",
-    "seller:e9779976487b77c6d4ac45f75ec7afe9"
+    "seller:e9779976487b77c6d4ac45f75ec7afe9",
+    "policy:SELLER_HANDOFF_AFTER_LIMIT"
   ],
   "financial_resolution": {
     "currency": "BRL",

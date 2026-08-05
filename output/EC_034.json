@@ -42,9 +42,7 @@
   },
   "evidence_ids": [
     "order:b210c676cae65f95f7e08a49d195e1a1",
-    "payment:b210c676cae65f95f7e08a49d195e1a1:1",
-    "seller:platform",
-    "policy:ORDER_UNAVAILABLE_AFTER_PAYMENT"
+    "order:0b1e73fa546894ad7310916b480de067"
   ],
   "financial_resolution": {
     "currency": "BRL",

@@ -3,8 +3,7 @@
   "case_assessment": {
     "primary_issue": "late_delivery_seller",
     "secondary_issues": [
-      "multi_item_order",
-      "multi_seller_order"
+      "multi_item_order"
     ],
     "case_status": "action_required",
     "confidence": 0.95
@@ -32,8 +31,8 @@
   },
   "product_context": {
     "product_ids": [
-      "6ab41d7f15e7af9d6c7cd912055acc1a",
-      "c1c1d3afbe6a5ab7a534f7ea20e09b8e"
+      "c1c1d3afbe6a5ab7a534f7ea20e09b8e",
+      "6ab41d7f15e7af9d6c7cd912055acc1a"
     ],
     "category_names": [
       "esporte_lazer"

@@ -17,8 +17,8 @@
       "f396e1280028fa9c8c83111abee5f2e9:2"
     ],
     "seller_ids": [
-      "ccc4bbb5f32a6ab2b7066a4130f114e3",
-      "f7ba60f8c3f99e7ee4042fdef03b70c4"
+      "f7ba60f8c3f99e7ee4042fdef03b70c4",
+      "ccc4bbb5f32a6ab2b7066a4130f114e3"
     ],
     "payment_ids": [
       "f396e1280028fa9c8c83111abee5f2e9:1"
@@ -30,8 +30,8 @@
   },
   "product_context": {
     "product_ids": [
-      "9b1954fdd0f9b4ef4ee2d267ac9de4bd",
-      "6cdd53843498f92890544667809f1595"
+      "6cdd53843498f92890544667809f1595",
+      "9b1954fdd0f9b4ef4ee2d267ac9de4bd"
     ],
     "category_names": [
       "beleza_saude"
@@ -80,10 +80,6 @@
     "responsible_parties": [
       {
         "party_type": "seller",
-        "party_id": "ccc4bbb5f32a6ab2b7066a4130f114e3"
-      },
-      {
-        "party_type": "seller",
         "party_id": "f7ba60f8c3f99e7ee4042fdef03b70c4"
       }
     ]
@@ -93,7 +89,6 @@
     "item:f396e1280028fa9c8c83111abee5f2e9:1",
     "item:f396e1280028fa9c8c83111abee5f2e9:2",
     "payment:f396e1280028fa9c8c83111abee5f2e9:1",
-    "seller:ccc4bbb5f32a6ab2b7066a4130f114e3",
     "seller:f7ba60f8c3f99e7ee4042fdef03b70c4",
     "policy:SELLER_HANDOFF_AFTER_LIMIT"
   ],

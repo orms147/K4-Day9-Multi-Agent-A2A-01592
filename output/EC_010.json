@@ -17,8 +17,8 @@
       "919baca007d9525b6668c18f79a33197:2"
     ],
     "seller_ids": [
-      "7d13fca15225358621be4086e1eb0964",
-      "c60b801f2d52c7f7f91de00870882a75"
+      "c60b801f2d52c7f7f91de00870882a75",
+      "7d13fca15225358621be4086e1eb0964"
     ],
     "payment_ids": [
       "919baca007d9525b6668c18f79a33197:2",
@@ -81,6 +81,10 @@
     "responsible_parties": [
       {
         "party_type": "seller",
+        "party_id": "c60b801f2d52c7f7f91de00870882a75"
+      },
+      {
+        "party_type": "seller",
         "party_id": "7d13fca15225358621be4086e1eb0964"
       }
     ]
@@ -91,6 +95,7 @@
     "item:919baca007d9525b6668c18f79a33197:2",
     "payment:919baca007d9525b6668c18f79a33197:1",
     "payment:919baca007d9525b6668c18f79a33197:2",
+    "seller:c60b801f2d52c7f7f91de00870882a75",
     "seller:7d13fca15225358621be4086e1eb0964",
     "policy:SELLER_HANDOFF_AFTER_LIMIT"
   ],
