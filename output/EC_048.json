@@ -1,12 +1,13 @@
 {
   "case_id": "EC_048",
   "case_assessment": {
-    "primary_issue": "late_delivery_seller",
+    "primary_issue": "unsupported_late_claim",
     "secondary_issues": [
-      "canceled_order_paid"
+      "multi_item_order",
+      "repeat_customer"
     ],
-    "case_status": "resolved",
-    "confidence": 95
+    "case_status": "no_action",
+    "confidence": 0.95
   },
   "affected_entities": {
     "order_ids": [
@@ -32,8 +33,8 @@
   },
   "product_context": {
     "product_ids": [
-      "4f88323d03ffaf090b8fb0116b33c95e",
       "592962829d5a715304344e656e39108a",
+      "4f88323d03ffaf090b8fb0116b33c95e",
       "3e5201fe0d1ba474d9b90152c83c706c"
     ],
     "category_names": [
@@ -70,29 +71,28 @@
     ]
   },
   "root_cause_analysis": {
-    "seller_handoff_variance": "The seller failed to hand off the order within the shipping limit, causing a variance of 111.84 hours.",
-    "delivery_variance": "The delivery was delayed by 185.7 hours, which is primarily due to the late handoff by the seller."
+    "ranked_causes": [
+      {
+        "cause_code": "DELIVERY_WITHIN_ESTIMATE",
+        "rank": 1
+      }
+    ],
+    "responsible_parties": []
   },
-  "evidence_ids": {
-    "order": "b8ed89bd3f1fe72244f0f616acdc7da1",
-    "item": "b8ed89bd3f1fe72244f0f616acdc7da1:1",
-    "payment": "b8ed89bd3f1fe72244f0f616acdc7da1:1",
-    "seller": "8160255418d5aaa7dbdc9f4c64ebda44",
-    "policy": "EC_POLICY_V2_LATE_DELIVERY_SELLER"
-  },
+  "evidence_ids": [
+    "order:b8ed89bd3f1fe72244f0f616acdc7da1",
+    "item:b8ed89bd3f1fe72244f0f616acdc7da1:1",
+    "item:b8ed89bd3f1fe72244f0f616acdc7da1:2",
+    "item:b8ed89bd3f1fe72244f0f616acdc7da1:3",
+    "payment:b8ed89bd3f1fe72244f0f616acdc7da1:1",
+    "seller:8160255418d5aaa7dbdc9f4c64ebda44",
+    "policy:DELIVERY_WITHIN_ESTIMATE"
+  ],
   "financial_resolution": {
-    "refund_amount": 0,
-    "discount_amount": 0,
-    "compensation_amount": 0
+    "currency": "BRL",
+    "recommended_refund_brl": 0.0
   },
   "resolution_actions": [
-    {
-      "action": "Notify the seller about the late handoff and the impact on delivery.",
-      "status": "completed"
-    },
-    {
-      "action": "Monitor the seller's performance and provide training if necessary.",
-      "status": "planned"
-    }
+    "reject_late_refund"
   ]
 }

@@ -3,8 +3,7 @@
   "case_assessment": {
     "primary_issue": "late_delivery_logistics",
     "secondary_issues": [
-      "multi_item_order",
-      "multi_seller_order"
+      "multi_item_order"
     ],
     "case_status": "action_required",
     "confidence": 0.95
@@ -31,8 +30,8 @@
   },
   "product_context": {
     "product_ids": [
-      "5b2b72f58d212a6e4733884ef0ece564",
-      "c686d4fd1e845efd1b98db8220f0af3b"
+      "c686d4fd1e845efd1b98db8220f0af3b",
+      "5b2b72f58d212a6e4733884ef0ece564"
     ],
     "category_names": [
       "cama_mesa_banho"

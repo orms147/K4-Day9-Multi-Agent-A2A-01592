@@ -1,10 +1,14 @@
 {
   "case_id": "EC_022",
   "case_assessment": {
-    "primary_issue": "valid_split_payment",
-    "secondary_issues": [],
-    "case_status": "resolved",
-    "confidence": 100
+    "primary_issue": "unsupported_late_claim",
+    "secondary_issues": [
+      "multi_item_order",
+      "split_payment",
+      "repeat_customer"
+    ],
+    "case_status": "no_action",
+    "confidence": 0.95
   },
   "affected_entities": {
     "order_ids": [
@@ -62,18 +66,35 @@
     "difference_brl": -0.0,
     "reconciled": true,
     "payment_types": [
-      "credit_card",
-      "voucher"
+      "voucher",
+      "credit_card"
     ]
   },
-  "root_cause_analysis": "The order was split into two payments, which is a valid payment method according to the policy.",
-  "evidence_ids": {
-    "order": "ca0400dec2c292340c373e63b1c2c597",
-    "item": "ca0400dec2c292340c373e63b1c2c597:1,ca0400dec2c292340c373e63b1c2c597:2,ca0400dec2c292340c373e63b1c2c597:3,ca0400dec2c292340c373e63b1c2c597:4",
-    "payment": "ca0400dec2c292340c373e63b1c2c597:1,ca0400dec2c292340c373e63b1c2c597:2",
-    "seller": "751bdc4d83a466c7206cd42e8f426b03",
-    "policy": "EC_POLICY_V2:valid_split_payment"
+  "root_cause_analysis": {
+    "ranked_causes": [
+      {
+        "cause_code": "DELIVERY_WITHIN_ESTIMATE",
+        "rank": 1
+      }
+    ],
+    "responsible_parties": []
   },
-  "financial_resolution": "No financial resolution needed as the payment was reconciled correctly.",
-  "resolution_actions": []
+  "evidence_ids": [
+    "order:ca0400dec2c292340c373e63b1c2c597",
+    "item:ca0400dec2c292340c373e63b1c2c597:1",
+    "item:ca0400dec2c292340c373e63b1c2c597:2",
+    "item:ca0400dec2c292340c373e63b1c2c597:3",
+    "item:ca0400dec2c292340c373e63b1c2c597:4",
+    "payment:ca0400dec2c292340c373e63b1c2c597:1",
+    "payment:ca0400dec2c292340c373e63b1c2c597:2",
+    "seller:751bdc4d83a466c7206cd42e8f426b03",
+    "policy:DELIVERY_WITHIN_ESTIMATE"
+  ],
+  "financial_resolution": {
+    "currency": "BRL",
+    "recommended_refund_brl": 0.0
+  },
+  "resolution_actions": [
+    "reject_late_refund"
+  ]
 }

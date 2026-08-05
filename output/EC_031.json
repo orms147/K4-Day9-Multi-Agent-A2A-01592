@@ -1,10 +1,12 @@
 {
   "case_id": "EC_031",
   "case_assessment": {
-    "primary_issue": "unavailable_order_paid",
-    "secondary_issues": [],
-    "case_status": "open",
-    "confidence": 100
+    "primary_issue": "unsupported_late_claim",
+    "secondary_issues": [
+      "repeat_customer"
+    ],
+    "case_status": "no_action",
+    "confidence": 0.95
   },
   "affected_entities": {
     "order_ids": [
@@ -26,14 +28,24 @@
   },
   "delivery_analysis": null,
   "payment_reconciliation": null,
-  "root_cause_analysis": "The order is marked as unavailable, but there is no evidence of a payment being made for this order. This suggests that the order might have been paid for and then marked as unavailable, which is against policy.",
-  "evidence_ids": {
-    "order": "72fa449394ed9dc9093819f93ca563af",
-    "payment": null
+  "root_cause_analysis": {
+    "ranked_causes": [
+      {
+        "cause_code": "DELIVERY_WITHIN_ESTIMATE",
+        "rank": 1
+      }
+    ],
+    "responsible_parties": []
   },
-  "financial_resolution": null,
+  "evidence_ids": [
+    "order:72fa449394ed9dc9093819f93ca563af",
+    "policy:DELIVERY_WITHIN_ESTIMATE"
+  ],
+  "financial_resolution": {
+    "currency": "BRL",
+    "recommended_refund_brl": 0.0
+  },
   "resolution_actions": [
-    "Review the payment history for order 72fa449394ed9dc9093819f93ca563af.",
-    "If payment is confirmed, investigate why the order was marked as unavailable."
+    "reject_late_refund"
   ]
 }

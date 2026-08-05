@@ -1,8 +1,10 @@
 {
   "case_id": "EC_009",
   "case_assessment": {
-    "primary_issue": "",
-    "secondary_issues": [],
+    "primary_issue": "unsupported_late_claim",
+    "secondary_issues": [
+      "multi_item_order"
+    ],
     "case_status": "no_action",
     "confidence": 0.95
   },
@@ -63,8 +65,31 @@
       "credit_card"
     ]
   },
-  "root_cause_analysis": {},
-  "evidence_ids": [],
-  "financial_resolution": {},
-  "resolution_actions": []
+  "root_cause_analysis": {
+    "ranked_causes": [
+      {
+        "cause_code": "DELIVERY_WITHIN_ESTIMATE",
+        "rank": 1
+      }
+    ],
+    "responsible_parties": []
+  },
+  "evidence_ids": [
+    "order:6683aa4f73f7869ec65ebeeef53f700b",
+    "item:6683aa4f73f7869ec65ebeeef53f700b:1",
+    "item:6683aa4f73f7869ec65ebeeef53f700b:2",
+    "item:6683aa4f73f7869ec65ebeeef53f700b:3",
+    "item:6683aa4f73f7869ec65ebeeef53f700b:4",
+    "item:6683aa4f73f7869ec65ebeeef53f700b:5",
+    "payment:6683aa4f73f7869ec65ebeeef53f700b:1",
+    "seller:4e8dacf3d38f281ae26c3e0321d92d88",
+    "policy:DELIVERY_WITHIN_ESTIMATE"
+  ],
+  "financial_resolution": {
+    "currency": "BRL",
+    "recommended_refund_brl": 0.0
+  },
+  "resolution_actions": [
+    "reject_late_refund"
+  ]
 }

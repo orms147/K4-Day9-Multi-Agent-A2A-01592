@@ -1,10 +1,12 @@
 {
   "case_id": "EC_030",
   "case_assessment": {
-    "primary_issue": "canceled_order_paid",
-    "secondary_issues": [],
-    "case_status": "resolved",
-    "confidence": "high"
+    "primary_issue": "unsupported_late_claim",
+    "secondary_issues": [
+      "multi_item_order"
+    ],
+    "case_status": "no_action",
+    "confidence": 0.95
   },
   "affected_entities": {
     "order_ids": [
@@ -60,17 +62,28 @@
       "credit_card"
     ]
   },
-  "root_cause_analysis": "The order was canceled but the payment was still processed, leading to a discrepancy between the order status and payment status.",
-  "evidence_ids": {
-    "order": "676e40056867189a1b3599f3e646f421",
-    "item": "676e40056867189a1b3599f3e646f421:1,676e40056867189a1b3599f3e646f421:2",
-    "payment": "676e40056867189a1b3599f3e646f421:1",
-    "seller": "38e679b9e0064cd94c6f035707344dae",
-    "policy": "EC_POLICY_V2_CANCELED_ORDER_PAID"
+  "root_cause_analysis": {
+    "ranked_causes": [
+      {
+        "cause_code": "DELIVERY_WITHIN_ESTIMATE",
+        "rank": 1
+      }
+    ],
+    "responsible_parties": []
   },
-  "financial_resolution": "Refund the payment amount of BRL 81.48 to the customer.",
+  "evidence_ids": [
+    "order:676e40056867189a1b3599f3e646f421",
+    "item:676e40056867189a1b3599f3e646f421:1",
+    "item:676e40056867189a1b3599f3e646f421:2",
+    "payment:676e40056867189a1b3599f3e646f421:1",
+    "seller:38e679b9e0064cd94c6f035707344dae",
+    "policy:DELIVERY_WITHIN_ESTIMATE"
+  ],
+  "financial_resolution": {
+    "currency": "BRL",
+    "recommended_refund_brl": 0.0
+  },
   "resolution_actions": [
-    "Initiate a refund for the payment amount of BRL 81.48.",
-    "Update the order status to reflect the cancellation and payment refund."
+    "reject_late_refund"
   ]
 }

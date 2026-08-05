@@ -1,10 +1,16 @@
 {
   "case_id": "EC_029",
   "case_assessment": {
-    "primary_issue": "valid_split_payment",
-    "secondary_issues": [],
-    "case_status": "resolved",
-    "confidence": 100
+    "primary_issue": "unsupported_late_claim",
+    "secondary_issues": [
+      "multi_item_order",
+      "multi_seller_order",
+      "split_payment",
+      "repeat_customer",
+      "multiple_categories"
+    ],
+    "case_status": "no_action",
+    "confidence": 0.95
   },
   "affected_entities": {
     "order_ids": [
@@ -69,18 +75,34 @@
     "difference_brl": 0.0,
     "reconciled": true,
     "payment_types": [
-      "credit_card",
-      "voucher"
+      "voucher",
+      "credit_card"
     ]
   },
-  "root_cause_analysis": "The order was split into multiple payments, which is a valid payment method according to the policy.",
-  "evidence_ids": {
-    "order": "b69321fb7d3000994c5a2b55c4f3cb01",
-    "item": "b69321fb7d3000994c5a2b55c4f3cb01:1,b69321fb7d3000994c5a2b55c4f3cb01:2",
-    "payment": "b69321fb7d3000994c5a2b55c4f3cb01:1,b69321fb7d3000994c5a2b55c4f3cb01:2",
-    "seller": "d20b021d3efdf267a402c402a48ea64b,4a3ca9315b744ce9f8e9374361493884",
-    "policy": "EC_POLICY_V2:001"
+  "root_cause_analysis": {
+    "ranked_causes": [
+      {
+        "cause_code": "DELIVERY_WITHIN_ESTIMATE",
+        "rank": 1
+      }
+    ],
+    "responsible_parties": []
   },
-  "financial_resolution": "No financial resolution needed as the order was validly split into multiple payments.",
-  "resolution_actions": []
+  "evidence_ids": [
+    "order:b69321fb7d3000994c5a2b55c4f3cb01",
+    "item:b69321fb7d3000994c5a2b55c4f3cb01:1",
+    "item:b69321fb7d3000994c5a2b55c4f3cb01:2",
+    "payment:b69321fb7d3000994c5a2b55c4f3cb01:2",
+    "payment:b69321fb7d3000994c5a2b55c4f3cb01:1",
+    "seller:d20b021d3efdf267a402c402a48ea64b",
+    "seller:4a3ca9315b744ce9f8e9374361493884",
+    "policy:DELIVERY_WITHIN_ESTIMATE"
+  ],
+  "financial_resolution": {
+    "currency": "BRL",
+    "recommended_refund_brl": 0.0
+  },
+  "resolution_actions": [
+    "reject_late_refund"
+  ]
 }

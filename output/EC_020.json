@@ -1,10 +1,13 @@
 {
   "case_id": "EC_020",
   "case_assessment": {
-    "primary_issue": "late_delivery_seller",
-    "secondary_issues": [],
-    "case_status": "resolved",
-    "confidence": 95
+    "primary_issue": "unsupported_late_claim",
+    "secondary_issues": [
+      "multi_item_order",
+      "repeat_customer"
+    ],
+    "case_status": "no_action",
+    "confidence": 0.95
   },
   "affected_entities": {
     "order_ids": [
@@ -65,17 +68,29 @@
       "boleto"
     ]
   },
-  "root_cause_analysis": "The seller failed to hand off the order within the shipping limit, leading to a late delivery.",
-  "evidence_ids": {
-    "order": "4f3f48cbedce0c316c688af6fc7e9c56",
-    "item": "4f3f48cbedce0c316c688af6fc7e9c56:1",
-    "payment": "4f3f48cbedce0c316c688af6fc7e9c56:1",
-    "seller": "7c67e1448b00f6e969d365cea6b010ab",
-    "policy": "EC_POLICY_V2_LATE_DELIVERY_SELLER"
+  "root_cause_analysis": {
+    "ranked_causes": [
+      {
+        "cause_code": "DELIVERY_WITHIN_ESTIMATE",
+        "rank": 1
+      }
+    ],
+    "responsible_parties": []
   },
-  "financial_resolution": 0,
+  "evidence_ids": [
+    "order:4f3f48cbedce0c316c688af6fc7e9c56",
+    "item:4f3f48cbedce0c316c688af6fc7e9c56:1",
+    "item:4f3f48cbedce0c316c688af6fc7e9c56:2",
+    "item:4f3f48cbedce0c316c688af6fc7e9c56:3",
+    "payment:4f3f48cbedce0c316c688af6fc7e9c56:1",
+    "seller:7c67e1448b00f6e969d365cea6b010ab",
+    "policy:DELIVERY_WITHIN_ESTIMATE"
+  ],
+  "financial_resolution": {
+    "currency": "BRL",
+    "recommended_refund_brl": 0.0
+  },
   "resolution_actions": [
-    "Notification sent to the seller regarding the late handoff",
-    "No financial compensation as the order was delivered"
+    "reject_late_refund"
   ]
 }

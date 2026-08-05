@@ -1,12 +1,13 @@
 {
   "case_id": "EC_023",
   "case_assessment": {
-    "primary_issue": "late_delivery_seller",
+    "primary_issue": "unsupported_late_claim",
     "secondary_issues": [
-      "late_delivery_logistics"
+      "multi_item_order",
+      "repeat_customer"
     ],
-    "case_status": "resolved",
-    "confidence": 95
+    "case_status": "no_action",
+    "confidence": 0.95
   },
   "affected_entities": {
     "order_ids": [
@@ -64,17 +65,28 @@
       "credit_card"
     ]
   },
-  "root_cause_analysis": "The order was delivered late, both by the seller and the logistics. The seller handed off the items late, and the delivery took longer than expected.",
-  "evidence_ids": {
-    "order": "9d0516ad96d793d308cec3c5929ed649",
-    "item": "9d0516ad96d793d308cec3c5929ed649:1,9d0516ad96d793d308cec3c5929ed649:2",
-    "payment": "9d0516ad96d793d308cec3c5929ed649:1",
-    "seller": "a1043bafd471dff536d0c462352beb48",
-    "policy": "EC_POLICY_V2:late_delivery_seller,EC_POLICY_V2:late_delivery_logistics"
+  "root_cause_analysis": {
+    "ranked_causes": [
+      {
+        "cause_code": "DELIVERY_WITHIN_ESTIMATE",
+        "rank": 1
+      }
+    ],
+    "responsible_parties": []
   },
-  "financial_resolution": "No financial resolution needed as the order was delivered and the payment was reconciled.",
+  "evidence_ids": [
+    "order:9d0516ad96d793d308cec3c5929ed649",
+    "item:9d0516ad96d793d308cec3c5929ed649:1",
+    "item:9d0516ad96d793d308cec3c5929ed649:2",
+    "payment:9d0516ad96d793d308cec3c5929ed649:1",
+    "seller:a1043bafd471dff536d0c462352beb48",
+    "policy:DELIVERY_WITHIN_ESTIMATE"
+  ],
+  "financial_resolution": {
+    "currency": "BRL",
+    "recommended_refund_brl": 0.0
+  },
   "resolution_actions": [
-    "Inform the customer about the late delivery and apologize.",
-    "Monitor the seller's performance and ensure timely handoffs in the future."
+    "reject_late_refund"
   ]
 }

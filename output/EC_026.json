@@ -1,12 +1,12 @@
 {
   "case_id": "EC_026",
   "case_assessment": {
-    "primary_issue": "canceled_order_paid",
+    "primary_issue": "unsupported_late_claim",
     "secondary_issues": [
-      "unavailable_order_paid"
+      "multi_item_order"
     ],
-    "case_status": "resolved",
-    "confidence": 95
+    "case_status": "no_action",
+    "confidence": 0.95
   },
   "affected_entities": {
     "order_ids": [
@@ -62,19 +62,28 @@
       "credit_card"
     ]
   },
-  "root_cause_analysis": "The order was canceled and the customer was charged, which is a violation of the policy that orders should not be charged if they are canceled.",
-  "evidence_ids": {
-    "order": "9b4fc5c379134e1329bd48641ba285e3",
-    "item": "9b4fc5c379134e1329bd48641ba285e3:1,9b4fc5c379134e1329bd48641ba285e3:2",
-    "payment": "9b4fc5c379134e1329bd48641ba285e3:1",
-    "seller": "8132b9bd16876e1b0f8808d43825dd48",
-    "policy": "EC_POLICY_V2:CANCELED_ORDER_PAID"
+  "root_cause_analysis": {
+    "ranked_causes": [
+      {
+        "cause_code": "DELIVERY_WITHIN_ESTIMATE",
+        "rank": 1
+      }
+    ],
+    "responsible_parties": []
   },
+  "evidence_ids": [
+    "order:9b4fc5c379134e1329bd48641ba285e3",
+    "item:9b4fc5c379134e1329bd48641ba285e3:1",
+    "item:9b4fc5c379134e1329bd48641ba285e3:2",
+    "payment:9b4fc5c379134e1329bd48641ba285e3:1",
+    "seller:8132b9bd16876e1b0f8808d43825dd48",
+    "policy:DELIVERY_WITHIN_ESTIMATE"
+  ],
   "financial_resolution": {
-    "refund_amount": 670.04,
-    "refund_currency": "BRL"
+    "currency": "BRL",
+    "recommended_refund_brl": 0.0
   },
   "resolution_actions": [
-    "Refund the customer the full amount of the order including freight."
+    "reject_late_refund"
   ]
 }

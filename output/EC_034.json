@@ -1,10 +1,12 @@
 {
   "case_id": "EC_034",
   "case_assessment": {
-    "primary_issue": "unavailable_order_paid",
-    "secondary_issues": [],
-    "case_status": "open",
-    "confidence": 100
+    "primary_issue": "unsupported_late_claim",
+    "secondary_issues": [
+      "repeat_customer"
+    ],
+    "case_status": "no_action",
+    "confidence": 0.95
   },
   "affected_entities": {
     "order_ids": [
@@ -26,14 +28,24 @@
   },
   "delivery_analysis": null,
   "payment_reconciliation": null,
-  "root_cause_analysis": "The order is marked as unavailable, but there is no evidence of payment, which suggests that the payment might have been processed without the order being fulfilled.",
-  "evidence_ids": {
-    "order": "b210c676cae65f95f7e08a49d195e1a1",
-    "payment": null
+  "root_cause_analysis": {
+    "ranked_causes": [
+      {
+        "cause_code": "DELIVERY_WITHIN_ESTIMATE",
+        "rank": 1
+      }
+    ],
+    "responsible_parties": []
   },
-  "financial_resolution": null,
+  "evidence_ids": [
+    "order:b210c676cae65f95f7e08a49d195e1a1",
+    "policy:DELIVERY_WITHIN_ESTIMATE"
+  ],
+  "financial_resolution": {
+    "currency": "BRL",
+    "recommended_refund_brl": 0.0
+  },
   "resolution_actions": [
-    "Review the payment records to confirm if the payment was processed for an unavailable order.",
-    "Communicate with the customer to understand the situation and provide appropriate support."
+    "reject_late_refund"
   ]
 }

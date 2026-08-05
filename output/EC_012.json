@@ -1,8 +1,10 @@
 {
   "case_id": "EC_012",
   "case_assessment": {
-    "primary_issue": "unavailable_order",
-    "secondary_issues": [],
+    "primary_issue": "unsupported_late_claim",
+    "secondary_issues": [
+      "repeat_customer"
+    ],
     "case_status": "no_action",
     "confidence": 0.95
   },
@@ -29,18 +31,21 @@
   "root_cause_analysis": {
     "ranked_causes": [
       {
-        "cause_code": "ORDER_UNAVAILABLE_NO_PAYMENT",
+        "cause_code": "DELIVERY_WITHIN_ESTIMATE",
         "rank": 1
       }
     ],
     "responsible_parties": []
   },
   "evidence_ids": [
-    "order:73628c6d02ed8f6134d9752cd7b83c2a"
+    "order:73628c6d02ed8f6134d9752cd7b83c2a",
+    "policy:DELIVERY_WITHIN_ESTIMATE"
   ],
   "financial_resolution": {
     "currency": "BRL",
     "recommended_refund_brl": 0.0
   },
-  "resolution_actions": []
+  "resolution_actions": [
+    "reject_late_refund"
+  ]
 }

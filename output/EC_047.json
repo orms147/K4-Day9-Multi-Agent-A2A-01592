@@ -1,12 +1,12 @@
 {
   "case_id": "EC_047",
   "case_assessment": {
-    "primary_issue": "canceled_order_paid",
+    "primary_issue": "unsupported_late_claim",
     "secondary_issues": [
-      "unavailable_order_paid"
+      "repeat_customer"
     ],
-    "case_status": "resolved",
-    "confidence": 95
+    "case_status": "no_action",
+    "confidence": 0.95
   },
   "affected_entities": {
     "order_ids": [
@@ -63,19 +63,27 @@
       "voucher"
     ]
   },
-  "root_cause_analysis": "The order was canceled but payment was made, and the order was paid in full. This indicates that the customer paid for an unavailable or non-delivered item.",
-  "evidence_ids": {
-    "order": "2cfc79d9582e9135c0a9b61fa60e6b21",
-    "item": "2cfc79d9582e9135c0a9b61fa60e6b21:1",
-    "payment": "2cfc79d9582e9135c0a9b61fa60e6b21:1",
-    "seller": "dbc22125167c298ef99da25668e1011f",
-    "policy": "POLICY_UNAVAILABLE_ORDER_PAID"
+  "root_cause_analysis": {
+    "ranked_causes": [
+      {
+        "cause_code": "DELIVERY_WITHIN_ESTIMATE",
+        "rank": 1
+      }
+    ],
+    "responsible_parties": []
   },
+  "evidence_ids": [
+    "order:2cfc79d9582e9135c0a9b61fa60e6b21",
+    "item:2cfc79d9582e9135c0a9b61fa60e6b21:1",
+    "payment:2cfc79d9582e9135c0a9b61fa60e6b21:1",
+    "seller:dbc22125167c298ef99da25668e1011f",
+    "policy:DELIVERY_WITHIN_ESTIMATE"
+  ],
   "financial_resolution": {
-    "refund_amount": 79.56,
-    "currency": "BRL"
+    "currency": "BRL",
+    "recommended_refund_brl": 0.0
   },
   "resolution_actions": [
-    "Refund the customer the full amount of the order."
+    "reject_late_refund"
   ]
 }

@@ -1,12 +1,12 @@
 {
   "case_id": "EC_024",
   "case_assessment": {
-    "primary_issue": "canceled_order_paid",
+    "primary_issue": "unsupported_late_claim",
     "secondary_issues": [
-      "unavailable_order_paid"
+      "multi_item_order"
     ],
-    "case_status": "resolved",
-    "confidence": 95
+    "case_status": "no_action",
+    "confidence": 0.95
   },
   "affected_entities": {
     "order_ids": [
@@ -62,20 +62,28 @@
       "credit_card"
     ]
   },
-  "root_cause_analysis": "The order was canceled but payment was made, which is against policy. Additionally, the order was paid for but is unavailable.",
-  "evidence_ids": {
-    "order": "6560fb10610771449cb0463c5ba12199",
-    "item": "6560fb10610771449cb0463c5ba12199:1,6560fb10610771449cb0463c5ba12199:2",
-    "payment": "6560fb10610771449cb0463c5ba12199:1",
-    "seller": "897060da8b9a21f655304d50fd935913",
-    "policy": "EC_POLICY_V2"
+  "root_cause_analysis": {
+    "ranked_causes": [
+      {
+        "cause_code": "DELIVERY_WITHIN_ESTIMATE",
+        "rank": 1
+      }
+    ],
+    "responsible_parties": []
   },
+  "evidence_ids": [
+    "order:6560fb10610771449cb0463c5ba12199",
+    "item:6560fb10610771449cb0463c5ba12199:1",
+    "item:6560fb10610771449cb0463c5ba12199:2",
+    "payment:6560fb10610771449cb0463c5ba12199:1",
+    "seller:897060da8b9a21f655304d50fd935913",
+    "policy:DELIVERY_WITHIN_ESTIMATE"
+  ],
   "financial_resolution": {
-    "refund_amount": 333.62,
-    "refund_currency": "BRL"
+    "currency": "BRL",
+    "recommended_refund_brl": 0.0
   },
   "resolution_actions": [
-    "Refund the customer the full amount of the order including freight.",
-    "Notify the seller of the cancellation and the refund."
+    "reject_late_refund"
   ]
 }

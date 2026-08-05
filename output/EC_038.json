@@ -1,16 +1,13 @@
 {
   "case_id": "EC_038",
   "case_assessment": {
-    "primary_issue": "late_delivery_seller",
+    "primary_issue": "unsupported_late_claim",
     "secondary_issues": [
-      "valid_split_payment",
-      "unavailable_order_paid",
-      "canceled_order_paid",
-      "unsupported_late_claim",
-      "late_delivery_logistics"
+      "multi_item_order",
+      "repeat_customer"
     ],
-    "case_status": "resolved",
-    "confidence": 95
+    "case_status": "no_action",
+    "confidence": 0.95
   },
   "affected_entities": {
     "order_ids": [
@@ -68,21 +65,28 @@
       "credit_card"
     ]
   },
-  "root_cause_analysis": "The order was delivered late by the seller, which is a violation of the delivery policy. The seller did not hand off the items within the shipping limit, leading to a delivery variance of -200.9 hours.",
-  "evidence_ids": {
-    "order": "efcd8852328a37fca811747c09c6fb69",
-    "item": "efcd8852328a37fca811747c09c6fb69:1,efcd8852328a37fca811747c09c6fb69:2",
-    "payment": "efcd8852328a37fca811747c09c6fb69:1",
-    "seller": "520b493b57809f446cb0a233bb3e25c7",
-    "policy": "P003"
+  "root_cause_analysis": {
+    "ranked_causes": [
+      {
+        "cause_code": "DELIVERY_WITHIN_ESTIMATE",
+        "rank": 1
+      }
+    ],
+    "responsible_parties": []
   },
+  "evidence_ids": [
+    "order:efcd8852328a37fca811747c09c6fb69",
+    "item:efcd8852328a37fca811747c09c6fb69:1",
+    "item:efcd8852328a37fca811747c09c6fb69:2",
+    "payment:efcd8852328a37fca811747c09c6fb69:1",
+    "seller:520b493b57809f446cb0a233bb3e25c7",
+    "policy:DELIVERY_WITHIN_ESTIMATE"
+  ],
   "financial_resolution": {
-    "refund_amount": 0.0,
-    "discount_amount": 0.0,
-    "additional_charges": 0.0
+    "currency": "BRL",
+    "recommended_refund_brl": 0.0
   },
   "resolution_actions": [
-    "Notify the seller about the late delivery and request compliance with the delivery policy.",
-    "Monitor the seller's performance and take further actions if similar issues occur in the future."
+    "reject_late_refund"
   ]
 }

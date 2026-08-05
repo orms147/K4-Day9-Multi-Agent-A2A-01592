@@ -1,12 +1,13 @@
 {
   "case_id": "EC_018",
   "case_assessment": {
-    "primary_issue": "late_delivery_seller",
+    "primary_issue": "unsupported_late_claim",
     "secondary_issues": [
-      "late_delivery_logistics"
+      "multi_item_order",
+      "multi_seller_order"
     ],
-    "case_status": "resolved",
-    "confidence": 95
+    "case_status": "no_action",
+    "confidence": 0.95
   },
   "affected_entities": {
     "order_ids": [
@@ -17,8 +18,8 @@
       "f396e1280028fa9c8c83111abee5f2e9:2"
     ],
     "seller_ids": [
-      "ccc4bbb5f32a6ab2b7066a4130f114e3",
-      "f7ba60f8c3f99e7ee4042fdef03b70c4"
+      "f7ba60f8c3f99e7ee4042fdef03b70c4",
+      "ccc4bbb5f32a6ab2b7066a4130f114e3"
     ],
     "payment_ids": [
       "f396e1280028fa9c8c83111abee5f2e9:1"
@@ -71,30 +72,28 @@
     ]
   },
   "root_cause_analysis": {
-    "seller_handoff_variance_hours": {
-      "seller_id": "f7ba60f8c3f99e7ee4042fdef03b70c4",
-      "variance_hours": -40.43
-    }
+    "ranked_causes": [
+      {
+        "cause_code": "DELIVERY_WITHIN_ESTIMATE",
+        "rank": 1
+      }
+    ],
+    "responsible_parties": []
   },
-  "evidence_ids": {
-    "order": "f396e1280028fa9c8c83111abee5f2e9",
-    "item": "f396e1280028fa9c8c83111abee5f2e9:1,f396e1280028fa9c8c83111abee5f2e9:2",
-    "payment": "f396e1280028fa9c8c83111abee5f2e9:1",
-    "seller": "ccc4bbb5f32a6ab2b7066a4130f114e3,f7ba60f8c3f99e7ee4042fdef03b70c4",
-    "policy": "EC_POLICY_V2"
-  },
+  "evidence_ids": [
+    "order:f396e1280028fa9c8c83111abee5f2e9",
+    "item:f396e1280028fa9c8c83111abee5f2e9:1",
+    "item:f396e1280028fa9c8c83111abee5f2e9:2",
+    "payment:f396e1280028fa9c8c83111abee5f2e9:1",
+    "seller:f7ba60f8c3f99e7ee4042fdef03b70c4",
+    "seller:ccc4bbb5f32a6ab2b7066a4130f114e3",
+    "policy:DELIVERY_WITHIN_ESTIMATE"
+  ],
   "financial_resolution": {
-    "refund_amount": 0.0,
-    "discount_amount": 0.0
+    "currency": "BRL",
+    "recommended_refund_brl": 0.0
   },
   "resolution_actions": [
-    {
-      "action": "notify_sellers",
-      "details": "Inform sellers about the late handoff and request them to improve their shipping times."
-    },
-    {
-      "action": "monitor_delivery",
-      "details": "Continue monitoring the delivery process to ensure timely delivery in the future."
-    }
+    "reject_late_refund"
   ]
 }

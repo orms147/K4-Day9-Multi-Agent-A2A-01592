@@ -28,7 +28,8 @@ class BaseAgent:
                     {"role": "system", "content": self.system_prompt},
                     {"role": "user", "content": user_prompt}
                 ],
-                temperature=0.1
+                temperature=0.1,
+                max_tokens=1000
             )
             return response.choices[0].message.content.strip()
         except Exception as e:
